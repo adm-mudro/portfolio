@@ -135,15 +135,16 @@
       }
       nav ul {
         position: fixed;
-        top: 68px;
+        top: 60px;
         left: 0;
         width: 100%;
         background: white;
         flex-direction: column;
-        padding: 20px;
-        gap: 20px;
+        padding: 16px 24px 24px;
+        gap: 8px;
         border-bottom: 1px solid var(--color-border);
         display: none;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       }
       nav ul.open {
         display: flex;
@@ -151,6 +152,14 @@
       nav ul li {
         width: 100%;
         text-align: center;
+      }
+      nav a {
+        font-size: 17px;
+        padding: 10px 0;
+        display: block;
+      }
+      nav .btn-primary {
+        margin-top: 8px;
       }
     }
 
@@ -617,32 +626,123 @@
       .hero h1 {
         font-size: 36px;
       }
+      .hero {
+        padding: 40px 0 20px;
+      }
       .projects-hero {
-        padding: 50px 20px;
+        padding: 40px 16px;
+        border-radius: 20px;
+        margin: 24px 0;
       }
       .projects-hero h2 {
-        font-size: 32px;
+        font-size: 28px;
+      }
+      .projects-hero .btn-white {
+        padding: 12px 32px;
+        font-size: 16px;
+      }
+      .portfolio {
+        padding: 40px 0;
       }
       .portfolio-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .portfolio-item img {
+        height: 180px;
+      }
+      .about {
+        padding: 40px 0;
       }
       .about-inner {
         flex-direction: column;
         text-align: center;
       }
+      .about-photo {
+        flex: none;
+      }
+      .services,
+      .prices,
+      .reviews {
+        padding: 40px 0;
+      }
       .services-grid,
       .prices-grid,
       .reviews-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .section-title {
+        font-size: 28px;
+      }
+      .contacts {
+        padding: 40px 0;
+        border-radius: 20px 20px 0 0;
+        margin-top: 24px;
+      }
+      .contacts h2 {
+        font-size: 26px;
+      }
+      .socials {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .socials a {
+        width: 80%;
+        max-width: 280px;
+        padding: 14px 24px;
+        font-size: 16px;
+        text-align: center;
       }
     }
     @media (max-width: 480px) {
+      .container {
+        padding: 0 16px;
+      }
       .hero h1 {
-        font-size: 28px;
+        font-size: 26px;
+      }
+      .hero p {
+        font-size: 15px;
       }
       .btn-primary {
         padding: 8px 20px;
         font-size: 14px;
+      }
+      .projects-hero h2 {
+        font-size: 24px;
+      }
+      .projects-hero .btn-white {
+        padding: 10px 24px;
+        font-size: 14px;
+      }
+      .section-title {
+        font-size: 24px;
+      }
+      .contacts h2 {
+        font-size: 22px;
+      }
+      .socials a {
+        width: 90%;
+        padding: 12px 20px;
+      }
+      .price-item .cost {
+        font-size: 22px;
+      }
+    }
+    /* Hover только для мыши — на тач-устройствах убираем подъём */
+    @media (hover: none) {
+      .portfolio-item:hover {
+        transform: none;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      }
+      .btn-primary:hover {
+        transform: none;
+        box-shadow: none;
+      }
+      .socials a:hover {
+        transform: none;
       }
     }
   </style>
