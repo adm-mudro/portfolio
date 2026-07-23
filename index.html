@@ -1121,10 +1121,12 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script src="config.js"></script>
   <script>
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    firebase.initializeApp(FIREBASE_CONFIG);
+    const db = firebase.firestore();
   </script>
   <script>
     // ===== 1. Год в подвале =====
@@ -1293,17 +1295,21 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'Отправка...';
 
-      const { error } = await supabase
-        .from('messages')
-        .insert([{ email, message }]);
+      try {
+        await db.collection('messages').add({
+          email: email,
+          message: message,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      } catch (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Отправить';
+        alert('Ошибка отправки: ' + err.message);
+        return;
+      }
 
       submitBtn.disabled = false;
       submitBtn.textContent = 'Отправить';
-
-      if (error) {
-        alert('Ошибка отправки: ' + error.message);
-        return;
-      }
 
       modalFormBlock.style.display = 'none';
       modalSuccess.classList.add('show');
