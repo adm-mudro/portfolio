@@ -1123,9 +1123,15 @@
 
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-  <script src="config.js"></script>
   <script>
-    firebase.initializeApp(FIREBASE_CONFIG);
+    firebase.initializeApp({
+      apiKey: 'AIzaSyCNGTl95RhM7FvxYczqij44p24aGBotaJ4',
+      authDomain: 'project-2e535.firebaseapp.com',
+      projectId: 'project-2e535',
+      storageBucket: 'project-2e535.firebasestorage.app',
+      messagingSenderId: '306256640730',
+      appId: '1:306256640730:web:7c8a09a158667bf6b783e3'
+    });
     const db = firebase.firestore();
   </script>
   <script>
