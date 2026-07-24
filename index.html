@@ -167,6 +167,24 @@
     .hero {
       padding: 60px 0 40px;
       position: relative;
+      overflow: hidden;
+    }
+    .hero-sphere {
+      position: absolute;
+      top: -20px;
+      right: 60px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ff6b6b, #e63946 50%, #b71c1c);
+      box-shadow: 0 8px 32px rgba(230, 57, 70, 0.4), inset 0 -4px 12px rgba(0,0,0,0.15);
+      animation: sphereFloat 4s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+    @keyframes sphereFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
     }
     .hero-meta {
       display: flex;
@@ -765,6 +783,12 @@
       .hero {
         padding: 40px 0 20px;
       }
+      .hero-sphere {
+        width: 80px;
+        height: 80px;
+        top: -10px;
+        right: 20px;
+      }
       .projects-hero {
         padding: 40px 16px;
         border-radius: 20px;
@@ -842,6 +866,12 @@
       .hero p {
         font-size: 15px;
       }
+      .hero-sphere {
+        width: 60px;
+        height: 60px;
+        top: -5px;
+        right: 10px;
+      }
       .btn-primary {
         padding: 8px 20px;
         font-size: 14px;
@@ -907,6 +937,7 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero container fade-up">
+    <div class="hero-sphere"></div>
     <div class="hero-meta">
       <span class="project-number">[01] ABOUT PROJECT</span>
       <span class="category">PORTFOLIO WEBSITE FOR DESIGNER</span>
