@@ -3,12 +3,18 @@ on:
   schedule:
     - cron: '0 3 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
+
 jobs:
   backup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Commit and push changes
         run: |
           git config user.name "GitHub Actions"
