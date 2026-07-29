@@ -27,6 +27,11 @@ jobs:
           npx linkinator https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }} --recurse --skip "mailto:"
         continue-on-error: true
 
+      - name: Debug secrets
+        run: |
+          if [ -z "${{ secrets.TELEGRAM_BOT_TOKEN }}" ]; then echo "TELEGRAM_BOT_TOKEN is EMPTY"; else echo "TELEGRAM_BOT_TOKEN is SET (length: ${#TELEGRAM_BOT_TOKEN})"; fi
+          if [ -z "${{ secrets.TELEGRAM_CHAT_ID }}" ]; then echo "TELEGRAM_CHAT_ID is EMPTY"; else echo "TELEGRAM_CHAT_ID is SET"; fi
+
       - name: Send Telegram notification on failure
         if: steps.linkinator.outcome == 'failure'
         env:
@@ -34,6 +39,8 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         shell: bash
         run: |
+          echo "Token length: ${#TELEGRAM_BOT_TOKEN}"
+          echo "Chat ID: ${TELEGRAM_CHAT_ID}"
           RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
             -d chat_id="${TELEGRAM_CHAT_ID}" \
             -d text="$(echo -e "Деплой ${{ github.repository }}\nВетка: ${{ github.ref_name }}\nКоммит: ${{ github.sha }}\nСтатус: ${{ job.status }}\nСсылка: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}")")
