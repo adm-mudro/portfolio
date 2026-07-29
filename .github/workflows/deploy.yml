@@ -29,13 +29,11 @@ jobs:
 
       - name: Send Telegram notification on failure
         if: steps.linkinator.outcome == 'failure'
-        uses: appleboy/telegram-action@v1.0.1
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          message: |
-            🚀 Деплой ${{ github.repository }} на GitHub Pages
-            Ветка: ${{ github.ref_name }}
-            Коммит: ${{ github.sha }}
-            Статус: ${{ job.status }}
-            Ссылка: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        shell: bash
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d chat_id="${TELEGRAM_CHAT_ID}" \
+            -d text="$(echo -e "Деплой ${{ github.repository }}\nВетка: ${{ github.ref_name }}\nКоммит: ${{ github.sha }}\nСтатус: ${{ job.status }}\nСсылка: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}")"
