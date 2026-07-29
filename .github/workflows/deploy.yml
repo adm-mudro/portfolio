@@ -1,0 +1,40 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+
+      - name: Check broken links & notify Telegram
+        run: |
+          npx linkinator https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }} --recurse --skip "mailto:"
+        continue-on-error: true
+
+      - name: Send Telegram notification
+        if: always()
+        uses: appleboy/telegram-action@v1.0.0
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: |
+            🚀 Деплой ${{ github.repository }} на GitHub Pages
+            Ветка: ${{ github.ref_name }}
+            Коммит: ${{ github.sha }}
+            Статус: ${{ job.status }}
+            Ссылка: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
