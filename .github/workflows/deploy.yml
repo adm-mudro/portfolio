@@ -34,6 +34,8 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         shell: bash
         run: |
-          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
             -d chat_id="${TELEGRAM_CHAT_ID}" \
-            -d text="$(echo -e "Деплой ${{ github.repository }}\nВетка: ${{ github.ref_name }}\nКоммит: ${{ github.sha }}\nСтатус: ${{ job.status }}\nСсылка: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}")"
+            -d text="$(echo -e "Деплой ${{ github.repository }}\nВетка: ${{ github.ref_name }}\nКоммит: ${{ github.sha }}\nСтатус: ${{ job.status }}\nСсылка: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}")")
+          echo "HTTP code: $(echo "${RESPONSE}" | tail -1)"
+          echo "Response: $(echo "${RESPONSE}" | head -n -1)"
