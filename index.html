@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Марина | Веб-дизайнер</title>
+  <!-- Подключаем шрифты -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== ПЕРЕМЕННЫЕ ===== */
+    :root {
+      --color-bg: #FFFFFF;
+      --color-bg-secondary: #F5F7FA;
+      --color-text-primary: #1A1A2E;
+      --color-text-secondary: #6B7280;
+      --color-accent-blue: #4A7FD4;
+      --color-accent-light: #E8F0FE;
+      --color-navy: #1A3A5C;
+      --color-border: #E5E7EB;
+      --color-card-bg: #F0F4FF;
+      --font-sans: 'Inter', 'Segoe UI', Arial, sans-serif;
+      --font-serif: 'Playfair Display', 'Georgia', serif;
+    }
+
+    /* ===== СБРОС И БАЗА ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== ШАПКА (sticky) ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+      padding: 12px 0;
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .logo span {
+      color: var(--color-accent-blue);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--color-text-primary);
+      font-weight: 500;
+      font-size: 15px;
+      transition: color 0.2s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent-blue);
+      transition: width 0.3s;
+    }
+    nav a:hover {
+      color: var(--color-accent-blue);
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    .btn-primary {
+      background: var(--color-accent-blue);
+      color: white !important;
+      padding: 10px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--color-navy);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(74, 127, 212, 0.3);
+    }
+    .btn-primary::after {
+      display: none;
+    }
+    /* Бургер-меню (для мобильных) */
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+    .burger span {
+      width: 28px;
+      height: 3px;
+      background: var(--color-text-primary);
+      border-radius: 3px;
+      transition: 0.3s;
+    }
+    @media (max-width: 768px) {
+      .burger {
+        display: flex;
+      }
+      nav ul {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 16px 24px 24px;
+        gap: 8px;
+        border-bottom: 1px solid var(--color-border);
+        display: none;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      }
+      nav ul.open {
+        display: flex;
+      }
+      nav ul li {
+        width: 100%;
+        text-align: center;
+      }
+      nav a {
+        font-size: 17px;
+        padding: 10px 0;
+        display: block;
+      }
+      nav .btn-primary {
+        margin-top: 8px;
+      }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 60px 0 40px;
+      position: relative;
+    }
+    .hero-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text-secondary);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 16px;
+      margin-bottom: 40px;
+    }
+    .hero-meta .project-number {
+      font-weight: 600;
+      color: var(--color-accent-blue);
+    }
+    .hero-meta .category {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-meta .category::before {
+      content: '■';
+      color: var(--color-accent-blue);
+      font-size: 10px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 72px);
+      font-weight: 300;
+      line-height: 1.1;
+      max-width: 900px;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 .accent {
+      color: var(--color-accent-blue);
+      font-weight: 600;
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--color-text-secondary);
+      max-width: 600px;
+      margin-bottom: 40px;
+    }
+    .hero .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--color-accent-blue);
+      margin-bottom: 40px;
+    }
+
+    /* ===== СЕКЦИЯ ПРОЕКТОВ (стиль MORÉN) с фоном stol.png ===== */
+    .projects-hero {
+      background-image: url('stol.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      color: white;
+      padding: 80px 0 60px;
+      border-radius: 32px;
+      margin: 40px 0;
+      text-align: center;
+      overflow: hidden;
+    }
+    .projects-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      border-radius: 32px;
+      z-index: 1;
+    }
+    .projects-hero .content {
+      position: relative;
+      z-index: 2;
+    }
+    .projects-hero h2 {
+      font-family: var(--font-sans);
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .projects-hero h2 .italic {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--color-accent-light);
+    }
+    .projects-hero .btn-white {
+      display: inline-block;
+      margin-top: 24px;
+      background: white;
+      color: var(--color-navy);
+      padding: 14px 44px;
+      border-radius: 60px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 18px;
+    }
+    .projects-hero .btn-white:hover {
+      transform: scale(1.04);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    }
+
+    /* ===== СЕТКА ПРОЕКТОВ (с фильтрацией) ===== */
+    .portfolio {
+      padding: 60px 0;
+    }
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--color-text-secondary);
+      margin-bottom: 40px;
+    }
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .filter-btn {
+      background: var(--color-bg-secondary);
+      border: none;
+      padding: 8px 24px;
+      border-radius: 40px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.3s;
+      color: var(--color-text-secondary);
+    }
+    .filter-btn.active {
+      background: var(--color-accent-blue);
+      color: white;
+    }
+    .filter-btn:hover {
+      background: var(--color-accent-light);
+      color: var(--color-accent-blue);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .portfolio-item {
+      background: var(--color-card-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: 0.3s;
+      display: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .portfolio-item.show {
+      display: block;
+    }
+    .portfolio-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+    }
+    .portfolio-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: 0.5s;
+    }
+    .portfolio-item:hover img {
+      transform: scale(1.05);
+    }
+    .portfolio-item .info {
+      padding: 20px;
+    }
+    .portfolio-item .info h3 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .portfolio-item .info p {
+      color: var(--color-text-secondary);
+      font-size: 14px;
+      margin: 6px 0 10px;
+    }
+    .portfolio-item .tag {
+      display: inline-block;
+      background: var(--color-accent-light);
+      color: var(--color-accent-blue);
+      padding: 4px 14px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .load-more {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .load-more button {
+      background: transparent;
+      border: 2px solid var(--color-accent-blue);
+      color: var(--color-accent-blue);
+      padding: 10px 34px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .load-more button:hover {
+      background: var(--color-accent-blue);
+      color: white;
+    }
+
+    /* ===== ОБО МНЕ ===== */
+    .about {
+      padding: 60px 0;
+      background: var(--color-bg-secondary);
+    }
+    .about-inner {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .about-photo {
+      flex: 0 0 180px;
+      text-align: center;
+    }
+    .about-photo img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--color-accent-blue);
+    }
+    .about-text {
+      flex: 1;
+    }
+    .about-text h2 {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    .skills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .skills span {
+      background: var(--color-accent-light);
+      color: var(--color-accent-blue);
+      padding: 4px 18px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* ===== УСЛУГИ ===== */
+    .services {
+      padding: 60px 0;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+    .service-item {
+      background: var(--color-bg-secondary);
+      padding: 30px 20px;
+      border-radius: 20px;
+      text-align: center;
+      border-bottom: 4px solid var(--color-accent-blue);
+    }
+    .service-item h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    .service-item p {
+      color: var(--color-text-secondary);
+    }
+
+    /* ===== ЦЕНЫ ===== */
+    .prices {
+      padding: 60px 0;
+      background: var(--color-bg-secondary);
+    }
+    .prices-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+    .price-item {
+      background: white;
+      border-radius: 20px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      border: 1px solid var(--color-border);
+    }
+    .price-item h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    .price-item .cost {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--color-accent-blue);
+      margin: 12px 0;
+    }
+
+    /* ===== ОТЗЫВЫ ===== */
+    .reviews {
+      padding: 60px 0;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+    .review-item {
+      background: var(--color-bg-secondary);
+      border-radius: 20px;
+      padding: 24px;
+      border-left: 4px solid var(--color-accent-blue);
+    }
+    .review-item .author {
+      font-weight: 600;
+      margin-top: 12px;
+    }
+
+    /* ===== КОНТАКТЫ ===== */
+    .contacts {
+      padding: 60px 0;
+      background: var(--color-navy);
+      color: white;
+      text-align: center;
+      border-radius: 32px 32px 0 0;
+      margin-top: 40px;
+    }
+    .contacts h2 {
+      font-size: 36px;
+      font-weight: 700;
+    }
+    .contacts p {
+      opacity: 0.8;
+      margin: 10px 0 30px;
+    }
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+    .socials a {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      padding: 10px 28px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+      backdrop-filter: blur(4px);
+    }
+    .socials a:hover {
+      background: white;
+      color: var(--color-navy);
+      transform: scale(1.05);
+    }
+    .contacts form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .contacts input,
+    .contacts textarea {
+      padding: 14px 20px;
+      border: none;
+      border-radius: 40px;
+      font-size: 16px;
+      outline: none;
+      background: rgba(255,255,255,0.1);
+      color: white;
+    }
+    .contacts input::placeholder,
+    .contacts textarea::placeholder {
+      color: rgba(255,255,255,0.6);
+    }
+    .contacts input:focus,
+    .contacts textarea:focus {
+      background: rgba(255,255,255,0.2);
+    }
+    .contacts button {
+      background: white;
+      color: var(--color-navy);
+      border: none;
+      padding: 14px;
+      border-radius: 40px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .contacts button:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    /* ===== МОДАЛЬНОЕ ОКНО ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(6px);
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal {
+      background: white;
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 480px;
+      width: 90%;
+      position: relative;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+      animation: modalIn 0.3s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.9) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--color-text-secondary);
+      transition: color 0.2s;
+      line-height: 1;
+    }
+    .modal-close:hover {
+      color: var(--color-text-primary);
+    }
+    .modal h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--color-text-primary);
+    }
+    .modal .modal-sub {
+      color: var(--color-text-secondary);
+      margin-bottom: 24px;
+      font-size: 15px;
+    }
+    .modal form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .modal input,
+    .modal textarea {
+      padding: 14px 20px;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      font-size: 15px;
+      font-family: var(--font-sans);
+      outline: none;
+      transition: border-color 0.2s;
+      color: var(--color-text-primary);
+      background: var(--color-bg);
+    }
+    .modal input:focus,
+    .modal textarea:focus {
+      border-color: var(--color-accent-blue);
+    }
+    .modal textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    .modal form button {
+      background: var(--color-accent-blue);
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 40px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .modal form button:hover {
+      background: var(--color-navy);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(74, 127, 212, 0.3);
+    }
+    .modal form button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .modal-success {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .modal-success.show {
+      display: block;
+    }
+    .modal-success h4 {
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: var(--color-accent-blue);
+    }
+    .modal-success p {
+      color: var(--color-text-secondary);
+    }
+
+    .contacts .contact-btn-modal {
+      display: inline-block;
+      margin-top: 24px;
+      background: white;
+      color: var(--color-navy);
+      padding: 14px 40px;
+      border-radius: 60px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 18px;
+      cursor: pointer;
+      border: none;
+    }
+    .contacts .contact-btn-modal:hover {
+      transform: scale(1.04);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ===== ПОДВАЛ ===== */
+    footer {
+      background: var(--color-navy);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 20px 0;
+      font-size: 14px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    footer span {
+      color: white;
+    }
+
+    /* ===== АНИМАЦИИ (Intersection Observer) ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== АДАПТИВ ===== */
+    @media (max-width: 1024px) {
+      .hero h1 {
+        font-size: 48px;
+      }
+    }
+    @media (max-width: 768px) {
+      .hero-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .hero h1 {
+        font-size: 36px;
+      }
+      .hero {
+        padding: 40px 0 20px;
+      }
+      .projects-hero {
+        padding: 40px 16px;
+        border-radius: 20px;
+        margin: 24px 0;
+      }
+      .projects-hero h2 {
+        font-size: 28px;
+      }
+      .projects-hero .btn-white {
+        padding: 12px 32px;
+        font-size: 16px;
+      }
+      .portfolio {
+        padding: 40px 0;
+      }
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .portfolio-item img {
+        height: 180px;
+      }
+      .about {
+        padding: 40px 0;
+      }
+      .about-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+      .about-photo {
+        flex: none;
+      }
+      .services,
+      .prices,
+      .reviews {
+        padding: 40px 0;
+      }
+      .services-grid,
+      .prices-grid,
+      .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .section-title {
+        font-size: 28px;
+      }
+      .contacts {
+        padding: 40px 0;
+        border-radius: 20px 20px 0 0;
+        margin-top: 24px;
+      }
+      .contacts h2 {
+        font-size: 26px;
+      }
+      .socials {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .socials a {
+        width: 80%;
+        max-width: 280px;
+        padding: 14px 24px;
+        font-size: 16px;
+        text-align: center;
+      }
+    }
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 16px;
+      }
+      .hero h1 {
+        font-size: 26px;
+      }
+      .hero p {
+        font-size: 15px;
+      }
+      .btn-primary {
+        padding: 8px 20px;
+        font-size: 14px;
+      }
+      .projects-hero h2 {
+        font-size: 24px;
+      }
+      .projects-hero .btn-white {
+        padding: 10px 24px;
+        font-size: 14px;
+      }
+      .section-title {
+        font-size: 24px;
+      }
+      .contacts h2 {
+        font-size: 22px;
+      }
+      .socials a {
+        width: 90%;
+        padding: 12px 20px;
+      }
+      .price-item .cost {
+        font-size: 22px;
+      }
+    }
+    /* Hover только для мыши — на тач-устройствах убираем подъём */
+    @media (hover: none) {
+      .portfolio-item:hover {
+        transform: none;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      }
+      .btn-primary:hover {
+        transform: none;
+        box-shadow: none;
+      }
+      .socials a:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== ШАПКА ===== -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo">Марина<span>.</span></div>
+      <nav>
+        <ul id="navMenu">
+          <li><a href="#portfolio">Проекты</a></li>
+          <li><a href="#about">Обо мне</a></li>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#prices">Цены</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#contacts" class="btn-primary">Связаться</a></li>
+        </ul>
+        <div class="burger" id="burgerBtn">
+          <span></span><span></span><span></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero container fade-up">
+    <div class="hero-meta">
+      <span class="project-number">[01] ABOUT PROJECT</span>
+      <span class="category">PORTFOLIO WEBSITE FOR DESIGNER</span>
+    </div>
+    <h1>
+      <span style="font-weight: 600">САЙТ-ПОРТФОЛИО</span> <br />
+      <span class="accent">ВЕБ-ДИЗАЙНЕРА</span>
+    </h1>
+    <p>Создаю стильные, быстрые и удобные сайты. Помогаю бизнесу выделиться и привлечь клиентов через продуманный дизайн.</p>
+    <div class="divider"></div>
+  </section>
+
+  <!-- ===== СЕКЦИЯ ПРОЕКТОВ (фон stol.png, пилсы удалены) ===== -->
+  <div class="container">
+    <div class="projects-hero fade-up">
+      <div class="content">
+        <h2>
+          ВЕБ ДИЗАЙН <br />
+          <span class="italic">мы создаём вечное</span>
+        </h2>
+        <a href="#portfolio" class="btn-white">Смотреть все проекты</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ПОРТФОЛИО (с фильтрацией) ===== -->
+  <section id="portfolio" class="portfolio container">
+    <h2 class="section-title fade-up">Мои работы</h2>
+    <p class="section-sub fade-up">Лендинги, карточки для маркетплейсов, первые блоки</p>
+
+    <div class="filters fade-up">
+      <button class="filter-btn active" data-filter="all">Все</button>
+      <button class="filter-btn" data-filter="landing">Лендинги</button>
+      <button class="filter-btn" data-filter="cards">Карточки</button>
+      <button class="filter-btn" data-filter="blocks">Блоки</button>
+    </div>
+
+    <div class="portfolio-grid" id="portfolioGrid">
+      <!-- Примеры работ (замените картинки и тексты) -->
+      <div class="portfolio-item show" data-category="landing">
+        <img src="https://via.placeholder.com/600x400/4A7FD4/FFFFFF?text=Лендинг+Стоматология" alt="Лендинг стоматология" />
+        <div class="info">
+          <h3>Стоматология «Улыбка»</h3>
+          <p>Запись на приём, доверительный дизайн.</p>
+          <span class="tag">Лендинг</span>
+        </div>
+      </div>
+      <div class="portfolio-item show" data-category="landing">
+        <img src="https://via.placeholder.com/600x400/4A7FD4/FFFFFF?text=Лендинг+Кафе" alt="Лендинг кафе" />
+        <div class="info">
+          <h3>Кафе «Аромант»</h3>
+          <p>Атмосферный лендинг с меню.</p>
+          <span class="tag">Лендинг</span>
+        </div>
+      </div>
+      <div class="portfolio-item show" data-category="cards">
+        <img src="https://via.placeholder.com/600x400/1A3A5C/FFFFFF?text=Карточка+товара" alt="Карточка товара" />
+        <div class="info">
+          <h3>Карточка кроссовок</h3>
+          <p>Для маркетплейса, акцент на цену.</p>
+          <span class="tag">Карточка</span>
+        </div>
+      </div>
+      <div class="portfolio-item show" data-category="cards">
+        <img src="https://via.placeholder.com/600x400/1A3A5C/FFFFFF?text=Карточка+косметики" alt="Карточка косметики" />
+        <div class="info">
+          <h3>Натуральная косметика</h3>
+          <p>Нежный стиль для карточки крема.</p>
+          <span class="tag">Карточка</span>
+        </div>
+      </div>
+      <div class="portfolio-item show" data-category="blocks">
+        <img src="https://via.placeholder.com/600x400/E8F0FE/1A3A5C?text=Главный+блок" alt="Главный блок" />
+        <div class="info">
+          <h3>Главный блок для IT-стартапа</h3>
+          <p>Эффективный хедер с CTA.</p>
+          <span class="tag">Блок</span>
+        </div>
+      </div>
+      <div class="portfolio-item show" data-category="blocks">
+        <img src="https://via.placeholder.com/600x400/E8F0FE/1A3A5C?text=Блок+о+компании" alt="Блок о компании" />
+        <div class="info">
+          <h3>Блок «О компании»</h3>
+          <p>Продающий текст и преимущества.</p>
+          <span class="tag">Блок</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="load-more" id="loadMoreContainer" style="display:none;">
+      <button id="loadMoreBtn">Показать ещё</button>
+    </div>
+  </section>
+
+  <!-- ===== ОБО МНЕ ===== -->
+  <section id="about" class="about">
+    <div class="container about-inner fade-up">
+      <div class="about-photo">
+        <img src="https://via.placeholder.com/160/4A7FD4/FFFFFF?text=ФОТО" alt="Фото Марины" />
+      </div>
+      <div class="about-text">
+        <h2>Привет, я Марина</h2>
+        <p>Начинающий веб-дизайнер. Превращаю идеи в стильные и понятные интерфейсы. Работаю в Figma, Photoshop и Tilda.</p>
+        <p>Люблю минимализм, порядок и аккуратные детали. Постоянно учусь новому.</p>
+        <div class="skills">
+          <span>Figma</span>
+          <span>Photoshop</span>
+          <span>Tilda</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== УСЛУГИ ===== -->
+  <section id="services" class="services container">
+    <h2 class="section-title fade-up">Что я делаю</h2>
+    <div class="services-grid">
+      <div class="service-item fade-up">
+        <h3>Лендинги</h3>
+        <p>Посадочные страницы для продажи услуг и товаров.</p>
+      </div>
+      <div class="service-item fade-up">
+        <h3>Карточки для маркетплейсов</h3>
+        <p>Привлекательный дизайн карточек товаров (Ozon, Wildberries).</p>
+      </div>
+      <div class="service-item fade-up">
+        <h3>Первые блоки сайтов</h3>
+        <p>Дизайн главного экрана, который сразу цепляет.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ЦЕНЫ ===== -->
+  <section id="prices" class="prices container">
+    <h2 class="section-title fade-up">Цены</h2>
+    <div class="prices-grid">
+      <div class="price-item fade-up">
+        <h3>Лендинг</h3>
+        <p>Стандартная страница</p>
+        <div class="cost">от 10 000 ₽</div>
+      </div>
+      <div class="price-item fade-up">
+        <h3>Карточка товара</h3>
+        <p>Для маркетплейсов</p>
+        <div class="cost">от 5 000 ₽</div>
+      </div>
+      <div class="price-item fade-up">
+        <h3>Главный блок</h3>
+        <p>Дизайн первого экрана</p>
+        <div class="cost">от 7 000 ₽</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ОТЗЫВЫ ===== -->
+  <section id="reviews" class="reviews container">
+    <h2 class="section-title fade-up">Отзывы</h2>
+    <div class="reviews-grid">
+      <div class="review-item fade-up">
+        <p>«Марина сделала отличный дизайн для моего лендинга. Работа выполнена быстро и качественно. Очень доволен!»</p>
+        <div class="author">— Алексей, владелец кафе</div>
+      </div>
+      <div class="review-item fade-up">
+        <p>«Заказал карточки для товаров на Ozon. Дизайн выделяется среди конкурентов, продажи выросли.»</p>
+        <div class="author">— Екатерина, предприниматель</div>
+      </div>
+      <div class="review-item fade-up">
+        <p>«Марина предложила отличное решение для главного блока моего сайта. Клиенты стали больше задерживаться на странице.»</p>
+        <div class="author">— Дмитрий, стартап</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== КОНТАКТЫ ===== -->
+  <section id="contacts" class="contacts">
+    <div class="container">
+      <h2 class="fade-up">Свяжитесь со мной</h2>
+      <p class="fade-up">Я на связи в мессенджерах и по почте</p>
+      <div class="socials fade-up">
+        <a href="tel:+79882849492">Позвонить</a>
+        <a href="https://max.ru/u/f9LHodD0cOIsb3mgvrkVJae0LpKNh0qk-06lLX1NinwdgwZYitZx1KimcDM" target="_blank">Макс</a>
+        <a href="https://vk.ru/ghbxrhvfy" target="_blank">ВКонтакте</a>
+      </div>
+      <button class="contact-btn-modal" id="openModalBtn">Связаться со мной</button>
+    </div>
+  </section>
+
+  <!-- ===== МОДАЛЬНОЕ ОКНО ===== -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal">
+      <button class="modal-close" id="closeModalBtn">&times;</button>
+      <div id="modalFormBlock">
+        <h3>Напишите мне</h3>
+        <p class="modal-sub">Оставьте вашу почту и опишите задачу — я отвечу в ближайшее время</p>
+        <form id="contactForm">
+          <input type="email" id="formEmail" placeholder="Ваша почта" required />
+          <textarea id="formMessage" placeholder="Что я хочу сделать..." required></textarea>
+          <button type="submit" id="submitBtn">Отправить</button>
+        </form>
+      </div>
+      <div class="modal-success" id="modalSuccess">
+        <h4>Спасибо!</h4>
+        <p>Ваше сообщение отправлено. Я свяжусь с вами в ближайшее время!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ПОДВАЛ ===== -->
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Марина. Сделано с ❤️</p>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script>
+    firebase.initializeApp({
+      apiKey: 'AIzaSyCNGTl95RhM7FvxYczqij44p24aGBotaJ4',
+      authDomain: 'project-2e535.firebaseapp.com',
+      projectId: 'project-2e535',
+      storageBucket: 'project-2e535.firebasestorage.app',
+      messagingSenderId: '306256640730',
+      appId: '1:306256640730:web:7c8a09a158667bf6b783e3'
+    });
+    const db = firebase.firestore();
+  </script>
+  <script>
+    // ===== 1. Год в подвале =====
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ===== 2. Бургер-меню =====
+    const burger = document.getElementById('burgerBtn');
+    const navMenu = document.getElementById('navMenu');
+    burger.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+    });
+    document.querySelectorAll('#navMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+      });
+    });
+
+    // ===== 3. Фильтрация портфолио =====
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.portfolio-item');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const loadMoreContainer = document.getElementById('loadMoreContainer');
+    let visibleCount = 6;
+    const totalItems = items.length;
+
+    // Устанавливаем для всех элементов data-filtered="true" при загрузке
+    items.forEach(item => item.dataset.filtered = 'true');
+
+    function showInitial() {
+      items.forEach((item, index) => {
+        item.classList.toggle('show', index < visibleCount);
+      });
+      loadMoreContainer.style.display = (totalItems > visibleCount) ? 'block' : 'none';
+    }
+
+    function filterItems(category) {
+      items.forEach(item => {
+        const cat = item.dataset.category;
+        item.dataset.filtered = (category === 'all' || cat === category) ? 'true' : 'false';
+      });
+      let shown = 0;
+      items.forEach(item => {
+        if (item.dataset.filtered === 'true') {
+          if (shown < visibleCount) {
+            item.classList.add('show');
+            shown++;
+          } else {
+            item.classList.remove('show');
+          }
+        } else {
+          item.classList.remove('show');
+        }
+      });
+      const filteredTotal = document.querySelectorAll('.portfolio-item[data-filtered="true"]').length;
+      loadMoreContainer.style.display = (filteredTotal > visibleCount) ? 'block' : 'none';
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const category = this.dataset.filter;
+        items.forEach(item => {
+          const cat = item.dataset.category;
+          item.dataset.filtered = (category === 'all' || cat === category) ? 'true' : 'false';
+        });
+        let shown = 0;
+        items.forEach(item => {
+          if (item.dataset.filtered === 'true') {
+            if (shown < visibleCount) {
+              item.classList.add('show');
+              shown++;
+            } else {
+              item.classList.remove('show');
+            }
+          } else {
+            item.classList.remove('show');
+          }
+        });
+        const filteredTotal = document.querySelectorAll('.portfolio-item[data-filtered="true"]').length;
+        loadMoreContainer.style.display = (filteredTotal > visibleCount) ? 'block' : 'none';
+      });
+    });
+
+    loadMoreBtn.addEventListener('click', function() {
+      const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+      visibleCount += 3;
+      let shown = 0;
+      items.forEach(item => {
+        const cat = item.dataset.category;
+        const match = (activeFilter === 'all' || cat === activeFilter);
+        if (match) {
+          if (shown < visibleCount) {
+            item.classList.add('show');
+            shown++;
+          } else {
+            item.classList.remove('show');
+          }
+        }
+      });
+      const filteredTotal = document.querySelectorAll('.portfolio-item[data-filtered="true"]').length;
+      if (shown >= filteredTotal) {
+        loadMoreContainer.style.display = 'none';
+      }
+    });
+
+    showInitial();
+
+    // ===== 4. Плавный скролл =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // ===== 5. Анимация появления (Intersection Observer) =====
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // ===== 6. Модальное окно "Связаться со мной" =====
+    const openModalBtn = document.getElementById('openModalBtn');
+    const contactModal = document.getElementById('contactModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const modalFormBlock = document.getElementById('modalFormBlock');
+    const modalSuccess = document.getElementById('modalSuccess');
+
+    openModalBtn.addEventListener('click', () => {
+      contactModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      contactModal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    contactModal.addEventListener('click', (e) => {
+      if (e.target === contactModal) {
+        contactModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('formEmail').value.trim();
+      const message = document.getElementById('formMessage').value.trim();
+
+      if (!email || !message) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Отправка...';
+
+      try {
+        await db.collection('messages').add({
+          email: email,
+          message: message,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      } catch (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Отправить';
+        alert('Ошибка отправки: ' + err.message);
+        return;
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Отправить';
+
+      modalFormBlock.style.display = 'none';
+      modalSuccess.classList.add('show');
+    });
+  </script>
+</body>
+</html>
