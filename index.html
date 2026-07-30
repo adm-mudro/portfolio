@@ -15,7 +15,7 @@
       --color-bg-secondary: #F5F7FA;
       --color-text-primary: #1A1A2E;
       --color-text-secondary: #6B7280;
-      --color-accent-blue: #4A7FD4;
+      --color-accent-blue: #4C78A9;
       --color-accent-light: #E8F0FE;
       --color-navy: #1A3A5C;
       --color-border: #E5E7EB;
@@ -135,16 +135,15 @@
       }
       nav ul {
         position: fixed;
-        top: 60px;
+        top: 68px;
         left: 0;
         width: 100%;
         background: white;
         flex-direction: column;
-        padding: 16px 24px 24px;
-        gap: 8px;
+        padding: 20px;
+        gap: 20px;
         border-bottom: 1px solid var(--color-border);
         display: none;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       }
       nav ul.open {
         display: flex;
@@ -153,20 +152,34 @@
         width: 100%;
         text-align: center;
       }
-      nav a {
-        font-size: 17px;
-        padding: 10px 0;
-        display: block;
-      }
-      nav .btn-primary {
-        margin-top: 8px;
-      }
     }
 
     /* ===== HERO ===== */
     .hero {
-      padding: 60px 0 40px;
+      padding: 60px 40px 40px;
       position: relative;
+      background-image: url('stol.png');
+      background-position: left center;
+      background-size: 130% auto;
+      background-repeat: no-repeat;
+      border-radius: 32px;
+      overflow: hidden;
+      color: white;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 35%, rgba(0,0,0,0.05) 60%);
+      border-radius: 32px;
+      z-index: 1;
+    }
+    .hero-meta,
+    .hero h1,
+    .hero p,
+    .hero .divider {
+      position: relative;
+      z-index: 2;
     }
     .hero-meta {
       display: flex;
@@ -175,8 +188,8 @@
       font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      color: var(--color-text-secondary);
-      border-bottom: 1px solid var(--color-border);
+      color: rgba(255,255,255,0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
       padding-bottom: 16px;
       margin-bottom: 40px;
     }
@@ -196,10 +209,10 @@
     }
 
     .hero h1 {
-      font-size: clamp(40px, 7vw, 72px);
+      font-size: clamp(32px, 5vw, 56px);
       font-weight: 300;
       line-height: 1.1;
-      max-width: 900px;
+      max-width: 55%;
       margin-bottom: 24px;
       letter-spacing: -0.02em;
     }
@@ -209,8 +222,8 @@
     }
     .hero p {
       font-size: 18px;
-      color: var(--color-text-secondary);
-      max-width: 600px;
+      color: rgba(255,255,255,0.85);
+      max-width: 50%;
       margin-bottom: 40px;
     }
     .hero .divider {
@@ -220,27 +233,13 @@
       margin-bottom: 40px;
     }
 
-    /* ===== СЕКЦИЯ ПРОЕКТОВ (стиль MORÉN) с фоном stol.png ===== */
+    /* ===== СЕКЦИЯ ПРОЕКТОВ ===== */
     .projects-hero {
-      background-image: url('stol.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      position: relative;
-      color: white;
+      background: var(--color-bg-secondary);
       padding: 80px 0 60px;
       border-radius: 32px;
       margin: 40px 0;
       text-align: center;
-      overflow: hidden;
-    }
-    .projects-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.55);
-      border-radius: 32px;
-      z-index: 1;
     }
     .projects-hero .content {
       position: relative;
@@ -257,13 +256,13 @@
       font-family: var(--font-serif);
       font-style: italic;
       font-weight: 400;
-      color: var(--color-accent-light);
+      color: var(--color-accent-blue);
     }
-    .projects-hero .btn-white {
+    .projects-hero .btn-primary-blue {
       display: inline-block;
       margin-top: 24px;
-      background: white;
-      color: var(--color-navy);
+      background: var(--color-accent-blue);
+      color: white;
       padding: 14px 44px;
       border-radius: 60px;
       font-weight: 600;
@@ -271,9 +270,9 @@
       transition: 0.3s;
       font-size: 18px;
     }
-    .projects-hero .btn-white:hover {
+    .projects-hero .btn-primary-blue:hover {
       transform: scale(1.04);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 12px 30px rgba(74, 127, 212, 0.3);
     }
 
     /* ===== СЕТКА ПРОЕКТОВ (с фильтрацией) ===== */
@@ -762,123 +761,32 @@
       .hero h1 {
         font-size: 36px;
       }
-      .hero {
-        padding: 40px 0 20px;
-      }
       .projects-hero {
-        padding: 40px 16px;
-        border-radius: 20px;
-        margin: 24px 0;
+        padding: 50px 20px;
       }
       .projects-hero h2 {
-        font-size: 28px;
-      }
-      .projects-hero .btn-white {
-        padding: 12px 32px;
-        font-size: 16px;
-      }
-      .portfolio {
-        padding: 40px 0;
+        font-size: 32px;
       }
       .portfolio-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      .portfolio-item img {
-        height: 180px;
-      }
-      .about {
-        padding: 40px 0;
       }
       .about-inner {
         flex-direction: column;
         text-align: center;
       }
-      .about-photo {
-        flex: none;
-      }
-      .services,
-      .prices,
-      .reviews {
-        padding: 40px 0;
-      }
       .services-grid,
       .prices-grid,
       .reviews-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      .section-title {
-        font-size: 28px;
-      }
-      .contacts {
-        padding: 40px 0;
-        border-radius: 20px 20px 0 0;
-        margin-top: 24px;
-      }
-      .contacts h2 {
-        font-size: 26px;
-      }
-      .socials {
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-      }
-      .socials a {
-        width: 80%;
-        max-width: 280px;
-        padding: 14px 24px;
-        font-size: 16px;
-        text-align: center;
       }
     }
     @media (max-width: 480px) {
-      .container {
-        padding: 0 16px;
-      }
       .hero h1 {
-        font-size: 26px;
-      }
-      .hero p {
-        font-size: 15px;
+        font-size: 28px;
       }
       .btn-primary {
         padding: 8px 20px;
         font-size: 14px;
-      }
-      .projects-hero h2 {
-        font-size: 24px;
-      }
-      .projects-hero .btn-white {
-        padding: 10px 24px;
-        font-size: 14px;
-      }
-      .section-title {
-        font-size: 24px;
-      }
-      .contacts h2 {
-        font-size: 22px;
-      }
-      .socials a {
-        width: 90%;
-        padding: 12px 20px;
-      }
-      .price-item .cost {
-        font-size: 22px;
-      }
-    }
-    /* Hover только для мыши — на тач-устройствах убираем подъём */
-    @media (hover: none) {
-      .portfolio-item:hover {
-        transform: none;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-      }
-      .btn-primary:hover {
-        transform: none;
-        box-shadow: none;
-      }
-      .socials a:hover {
-        transform: none;
       }
     }
   </style>
@@ -908,29 +816,16 @@
   <!-- ===== HERO ===== -->
   <section class="hero container fade-up">
     <div class="hero-meta">
-      <span class="project-number">[01] ABOUT PROJECT</span>
+      <span class="project-number">ABOUT PROJECT</span>
       <span class="category">PORTFOLIO WEBSITE FOR DESIGNER</span>
     </div>
     <h1>
-      <span style="font-weight: 600">САЙТ-ПОРТФОЛИО</span> <br />
+      САЙТ-ПОРТФОЛИО <br />
       <span class="accent">ВЕБ-ДИЗАЙНЕРА</span>
     </h1>
     <p>Создаю стильные, быстрые и удобные сайты. Помогаю бизнесу выделиться и привлечь клиентов через продуманный дизайн.</p>
     <div class="divider"></div>
   </section>
-
-  <!-- ===== СЕКЦИЯ ПРОЕКТОВ (фон stol.png, пилсы удалены) ===== -->
-  <div class="container">
-    <div class="projects-hero fade-up">
-      <div class="content">
-        <h2>
-          ВЕБ ДИЗАЙН <br />
-          <span class="italic">мы создаём вечное</span>
-        </h2>
-        <a href="#portfolio" class="btn-white">Смотреть все проекты</a>
-      </div>
-    </div>
-  </div>
 
   <!-- ===== ПОРТФОЛИО (с фильтрацией) ===== -->
   <section id="portfolio" class="portfolio container">
@@ -947,7 +842,7 @@
     <div class="portfolio-grid" id="portfolioGrid">
       <!-- Примеры работ (замените картинки и тексты) -->
       <div class="portfolio-item show" data-category="landing">
-        <img src="https://via.placeholder.com/600x400/4A7FD4/FFFFFF?text=Лендинг+Стоматология" alt="Лендинг стоматология" />
+        <img src="fitness.png" alt="Лендинг стоматология" />
         <div class="info">
           <h3>Стоматология «Улыбка»</h3>
           <p>Запись на приём, доверительный дизайн.</p>
@@ -955,7 +850,7 @@
         </div>
       </div>
       <div class="portfolio-item show" data-category="landing">
-        <img src="https://via.placeholder.com/600x400/4A7FD4/FFFFFF?text=Лендинг+Кафе" alt="Лендинг кафе" />
+        <img src="odezda.png" alt="Лендинг кафе" />
         <div class="info">
           <h3>Кафе «Аромант»</h3>
           <p>Атмосферный лендинг с меню.</p>
@@ -963,7 +858,7 @@
         </div>
       </div>
       <div class="portfolio-item show" data-category="cards">
-        <img src="https://via.placeholder.com/600x400/1A3A5C/FFFFFF?text=Карточка+товара" alt="Карточка товара" />
+        <img src="keis.png" alt="Карточка товара" style="object-position: top" />
         <div class="info">
           <h3>Карточка кроссовок</h3>
           <p>Для маркетплейса, акцент на цену.</p>
@@ -971,7 +866,7 @@
         </div>
       </div>
       <div class="portfolio-item show" data-category="cards">
-        <img src="https://via.placeholder.com/600x400/1A3A5C/FFFFFF?text=Карточка+косметики" alt="Карточка косметики" />
+        <img src="zerkalo.png" alt="Карточка косметики" style="object-fit: contain" />
         <div class="info">
           <h3>Натуральная косметика</h3>
           <p>Нежный стиль для карточки крема.</p>
@@ -1005,17 +900,15 @@
   <section id="about" class="about">
     <div class="container about-inner fade-up">
       <div class="about-photo">
-        <img src="https://via.placeholder.com/160/4A7FD4/FFFFFF?text=ФОТО" alt="Фото Марины" />
+        <img src="ux-ui.jpg" alt="Фото Марины" />
       </div>
       <div class="about-text">
-        <h2>Привет, я Марина</h2>
-        <p>Начинающий веб-дизайнер. Превращаю идеи в стильные и понятные интерфейсы. Работаю в Figma, Photoshop и Tilda.</p>
-        <p>Люблю минимализм, порядок и аккуратные детали. Постоянно учусь новому.</p>
-        <div class="skills">
-          <span>Figma</span>
-          <span>Photoshop</span>
-          <span>Tilda</span>
-        </div>
+        <h2>Обо мне</h2>
+        <p>Меня зовут Марина. Я веб-дизайнер с душой к деталям.</p>
+        <p>Создаю современные, минималистичные интерфейсы, которые работают на результат. Помогаю компаниям выделиться среди конкурентов и привлечь внимание целевой аудитории.</p>
+        <p>Инструменты: Figma, Photoshop, Tilda.</p>
+        <p>Подход: чистота, порядок, удобство, эстетика.</p>
+        <p>Цель: делать дизайн, который приносит пользу и радость.</p>
       </div>
     </div>
   </section>
