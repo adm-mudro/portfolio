@@ -3,11 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Веб-дизайнер Марина Целикова. Лендинги, карточки для маркетплейсов и дизайн первых экранов для бизнеса." />
+  <meta name="theme-color" content="#1A3A5C" />
+  <meta property="og:title" content="Марина | Веб-дизайнер" />
+  <meta property="og:description" content="Создаю стильные, быстрые и удобные сайты: лендинги, карточки для маркетплейсов, первые блоки." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%234A7FD4'/%3E%3Ctext x='50' y='68' font-size='56' font-family='Georgia' text-anchor='middle' fill='white'%3EM%3C/text%3E%3C/svg%3E" />
   <title>Марина | Веб-дизайнер</title>
   <!-- Подключаем шрифты -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Playfair+Display:ital@0;1&display=swap" /></noscript>
+  <!-- LCP-изображение: загружаем сразу и в приоритете -->
+  <link rel="preload" as="image" href="stol.webp" fetchpriority="high" />
   <style>
     /* ===== ПЕРЕМЕННЫЕ ===== */
     :root {
@@ -159,6 +168,7 @@
       padding: 60px 40px 40px;
       position: relative;
       background-image: url('stol.png');
+      background-image: image-set(url('stol.webp') type('image/webp') 1x);
       background-position: left center;
       background-size: 130% auto;
       background-repeat: no-repeat;
@@ -278,6 +288,8 @@
     /* ===== СЕТКА ПРОЕКТОВ (с фильтрацией) ===== */
     .portfolio {
       padding: 60px 0;
+      content-visibility: auto;
+      contain-intrinsic-size: auto 1200px;
     }
     .section-title {
       font-size: 36px;
@@ -390,6 +402,8 @@
     .about {
       padding: 60px 0;
       background: var(--color-bg-secondary);
+      content-visibility: auto;
+      contain-intrinsic-size: auto 300px;
     }
     .about-inner {
       display: flex;
@@ -433,6 +447,8 @@
     /* ===== УСЛУГИ ===== */
     .services {
       padding: 60px 0;
+      content-visibility: auto;
+      contain-intrinsic-size: auto 300px;
     }
     .services-grid {
       display: grid;
@@ -459,6 +475,8 @@
     .prices {
       padding: 60px 0;
       background: var(--color-bg-secondary);
+      content-visibility: auto;
+      contain-intrinsic-size: auto 300px;
     }
     .prices-grid {
       display: grid;
@@ -488,6 +506,8 @@
     /* ===== ОТЗЫВЫ ===== */
     .reviews {
       padding: 60px 0;
+      content-visibility: auto;
+      contain-intrinsic-size: auto 300px;
     }
     .reviews-grid {
       display: grid;
@@ -842,7 +862,7 @@
     <div class="portfolio-grid" id="portfolioGrid">
       <!-- Примеры работ (замените картинки и тексты) -->
       <div class="portfolio-item show" data-category="landing">
-        <img src="fitness.png" alt="Лендинг стоматология" />
+        <img src="fitness.webp" alt="Лендинг стоматология" loading="lazy" width="600" height="400" />
         <div class="info">
           <h3>Стоматология «Улыбка»</h3>
           <p>Запись на приём.</p>
@@ -850,7 +870,7 @@
         </div>
       </div>
       <div class="portfolio-item show" data-category="landing">
-        <img src="odezda.png" alt="Лендинг кафе" />
+        <img src="odezda.webp" alt="Лендинг кафе" loading="lazy" width="600" height="400" />
         <div class="info">
           <h3>Кафе «Аромант»</h3>
           <p>Атмосферный лендинг с меню.</p>
@@ -858,7 +878,7 @@
         </div>
       </div>
       <div class="portfolio-item show" data-category="cards">
-        <img src="keis.png" alt="Карточка товара" style="object-position: top" />
+        <img src="keis.webp" alt="Карточка товара" style="object-position: top" loading="lazy" width="600" height="400" />
         <div class="info">
           <h3>Карточка кроссовок</h3>
           <p>Для маркетплейса, акцент на цену.</p>
@@ -866,7 +886,7 @@
         </div>
       </div>
       <div class="portfolio-item show" data-category="cards">
-        <img src="https://via.placeholder.com/600x400/1A3A5C/FFFFFF?text=Карточка+косметики" alt="Карточка косметики" />
+        <img src="https://via.placeholder.com/600x400/1A3A5C/FFFFFF?text=Карточка+косметики" alt="Карточка косметики" loading="lazy" width="600" height="400" />
         <div class="info">
           <h3>Натуральная косметика</h3>
           <p>Нежный стиль для карточки крема.</p>
@@ -874,7 +894,7 @@
         </div>
       </div>
       <div class="portfolio-item show" data-category="blocks">
-        <img src="https://via.placeholder.com/600x400/E8F0FE/1A3A5C?text=Главный+блок" alt="Главный блок" />
+        <img src="https://via.placeholder.com/600x400/E8F0FE/1A3A5C?text=Главный+блок" alt="Главный блок" loading="lazy" width="600" height="400" />
         <div class="info">
           <h3>Главный блок для IT-стартапа</h3>
           <p>Эффективный хедер с CTA.</p>
@@ -882,7 +902,7 @@
         </div>
       </div>
       <div class="portfolio-item show" data-category="blocks">
-        <img src="https://via.placeholder.com/600x400/E8F0FE/1A3A5C?text=Блок+о+компании" alt="Блок о компании" />
+        <img src="https://via.placeholder.com/600x400/E8F0FE/1A3A5C?text=Блок+о+компании" alt="Блок о компании" loading="lazy" width="600" height="400" />
         <div class="info">
           <h3>Блок «О компании»</h3>
           <p>Продающий текст и преимущества.</p>
@@ -900,7 +920,7 @@
   <section id="about" class="about">
     <div class="container about-inner fade-up">
       <div class="about-photo">
-        <img src="ux-ui.jpg" alt="Фото Марины" />
+        <img src="ux-ui.jpg" alt="Фото Марины" loading="lazy" width="160" height="160" />
       </div>
       <div class="about-text">
         <h2>Обо мне</h2>
@@ -1013,20 +1033,19 @@
     </div>
   </footer>
 
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script>
-    firebase.initializeApp({
-      apiKey: 'AIzaSyCNGTl95RhM7FvxYczqij44p24aGBotaJ4',
-      authDomain: 'project-2e535.firebaseapp.com',
-      projectId: 'project-2e535',
-      storageBucket: 'project-2e535.firebasestorage.app',
-      messagingSenderId: '306256640730',
-      appId: '1:306256640730:web:7c8a09a158667bf6b783e3'
-    });
-    const db = firebase.firestore();
-  </script>
-  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      firebase.initializeApp({
+        apiKey: 'AIzaSyCNGTl95RhM7FvxYczqij44p24aGBotaJ4',
+        authDomain: 'project-2e535.firebaseapp.com',
+        projectId: 'project-2e535',
+        storageBucket: 'project-2e535.firebasestorage.app',
+        messagingSenderId: '306256640730',
+        appId: '1:306256640730:web:7c8a09a158667bf6b783e3'
+      });
+      const db = firebase.firestore();
     // ===== 1. Год в подвале =====
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -1212,6 +1231,7 @@
       modalFormBlock.style.display = 'none';
       modalSuccess.classList.add('show');
     });
+  });
   </script>
 </body>
 </html>
