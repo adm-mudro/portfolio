@@ -24,7 +24,7 @@ jobs:
       - name: Check broken links
         id: linkinator
         run: |
-          npx linkinator https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }} --recurse --skip "mailto:"
+          npx linkinator https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }} --recurse --skip "mailto:" --skip "https://max.ru"
         continue-on-error: true
 
       - name: Send Telegram notification on failure
