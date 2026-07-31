@@ -287,7 +287,8 @@
 
     /* ===== СЕТКА ПРОЕКТОВ (с фильтрацией) ===== */
     .portfolio {
-      padding: 60px 0;
+      padding-top: 60px;
+      padding-bottom: 60px;
       content-visibility: auto;
       contain-intrinsic-size: auto 1200px;
     }
@@ -446,7 +447,8 @@
 
     /* ===== УСЛУГИ ===== */
     .services {
-      padding: 60px 0;
+      padding-top: 60px;
+      padding-bottom: 60px;
       content-visibility: auto;
       contain-intrinsic-size: auto 300px;
     }
@@ -473,7 +475,8 @@
 
     /* ===== ЦЕНЫ ===== */
     .prices {
-      padding: 60px 0;
+      padding-top: 60px;
+      padding-bottom: 60px;
       background: var(--color-bg-secondary);
       content-visibility: auto;
       contain-intrinsic-size: auto 300px;
@@ -505,7 +508,8 @@
 
     /* ===== ОТЗЫВЫ ===== */
     .reviews {
-      padding: 60px 0;
+      padding-top: 60px;
+      padding-bottom: 60px;
       content-visibility: auto;
       contain-intrinsic-size: auto 300px;
     }
@@ -773,13 +777,26 @@
       }
     }
     @media (max-width: 768px) {
+      .hero {
+        background-size: cover;
+        background-position: center;
+        padding: 44px 24px 36px;
+        min-height: 420px;
+      }
       .hero-meta {
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
       }
       .hero h1 {
-        font-size: 36px;
+        font-size: 34px;
+        max-width: 100%;
+        margin-bottom: 16px;
+      }
+      .hero p {
+        font-size: 16px;
+        max-width: 100%;
+        margin-bottom: 28px;
       }
       .projects-hero {
         padding: 50px 20px;
@@ -789,6 +806,7 @@
       }
       .portfolio-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
       }
       .about-inner {
         flex-direction: column;
@@ -798,9 +816,14 @@
       .prices-grid,
       .reviews-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
       }
     }
     @media (max-width: 480px) {
+      .hero {
+        padding: 36px 20px 28px;
+        min-height: 400px;
+      }
       .hero h1 {
         font-size: 28px;
       }
