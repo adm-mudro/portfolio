@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-labelledby="t4">
+  <title id="t4">Прототип лендинга с сеткой и структурой блоков</title>
+  <rect width="800" height="500" rx="24" fill="#E8F0FE"/>
+  <rect x="150" y="60" width="500" height="370" rx="18" fill="white" stroke="#D5E0F5" stroke-width="2"/>
+  <rect x="150" y="60" width="500" height="44" rx="18" fill="#4C78A9"/>
+  <circle cx="180" cy="82" r="5" fill="white" opacity="0.8"/>
+  <circle cx="202" cy="82" r="5" fill="white" opacity="0.8"/>
+  <circle cx="224" cy="82" r="5" fill="white" opacity="0.8"/>
+  <rect x="300" y="76" width="120" height="12" rx="6" fill="white" opacity="0.9"/>
+
+  <g stroke="#B7CBE6" stroke-width="1" opacity="0.6">
+    <line x1="280" y1="150" x2="280" y2="410"/>
+    <line x1="410" y1="150" x2="410" y2="410"/>
+    <line x1="540" y1="150" x2="540" y2="410"/>
+  </g>
+
+  <rect x="190" y="130" width="130" height="60" rx="10" fill="#D5E0F5"/>
+  <rect x="340" y="130" width="130" height="60" rx="10" fill="#D5E0F5"/>
+  <rect x="190" y="210" width="280" height="80" rx="10" fill="#E8F0FE"/>
+  <rect x="190" y="310" width="130" height="90" rx="10" fill="#4C78A9"/>
+  <rect x="340" y="310" width="130" height="90" rx="10" fill="#E8F0FE"/>
+  <rect x="490" y="130" width="120" height="270" rx="10" fill="#F5F7FA" stroke="#B7CBE6" stroke-width="2"/>
+
+  <text x="310" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#1A3A5C">Первый экран</text>
+  <text x="330" y="252" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#1A3A5C">Преимущества и кейсы</text>
+  <text x="330" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1A3A5C">CTA — кнопка</text>
+  <text x="550" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#6B7280">Форма заявки</text>
+
+  <text x="400" y="465" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#6B7280">Сетка (grid) помогает выровнять все блоки</text>
+</svg>
